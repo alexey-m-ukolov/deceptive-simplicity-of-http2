@@ -11,8 +11,16 @@
 			visibility: hidden;
 		}
 
+		.slide.with-counter {
+			padding-top: 106px;
+		}
+
 		.slide.with-counter::after {
 			visibility: visible;
+		}
+
+		.slide {
+			padding-top: 50px;
 		}
 
 		#cover {
@@ -73,6 +81,32 @@
 	<h2 class="place bottom">Логи&nbsp;говорят,&nbsp;что&nbsp;HTTP/2&nbsp;есть&nbsp;у&nbsp;30%&nbsp;посетителей&hellip;</h2>
 </section>
 
+<section class="slide light-text">
+	<img src="./images/something-completely-different.jpg" class="cover h">
+	<h2 class="place top">О чём я <strong>не буду</strong> говорить</h2>
+</section>
+
+<section class="slide">
+	<ul>
+		<li>Истории HTTP в целом и SPDY в частности /<a href="https://habrahabr.ru/post/308846/">Путь к HTTP/2</a>/</li>
+		<li>Деталях реализации протокола /<a href="https://tools.ietf.org/pdf/rfc7540.pdf">RFC 7540</a>,
+			<a href="https://http2.github.io/faq/">HTTP/2 FAQ</a>,
+			<a href="https://hpbn.co/">High Performance Browser Networking</a>/
+		</li>
+		<li>Стандартных демо сравнения скорости протоколов /<a href="https://http2.akamai.com/demo">Раз</a>,
+			<a href="http://www.http2demo.io/">Два</a>,
+			<a href="https://http2.golang.org/gophertiles?latency=30">Три</a>/
+		</li>
+		<li>Настройке сервера /<a href="https://google.com">Just Google It</a>/</li>
+		<li>Мифах, связанных с HTTPS /<a href="https://www.youtube.com/watch?v=e6DUrH56g14">Mythbusting HTTPS</a>/</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Некоторые лучшие практики оптимизации скорости загрузки страницы, выработанные за последние годы, являются в лучшем случае бесполезными, а часто даже вредными при использовании HTTP/2.</h2>
+	<h2 class="next">Эти «лучшие практики» &mdash; костыли, призванные бороться с недостатками и ограничениями протокола.</h2>
+</section>
+
 <section class="slide">
 	<h2 class="shout">HTTP/2 исправил ошибки прошлого</h2>
 </section>
@@ -80,6 +114,242 @@
 <section class="slide light-text">
 	<img src="./images/fight.png" class="cover h">
 	<h2 class="place bottom">Но&nbsp;само&nbsp;"прошлое"&nbsp;никуда&nbsp;не&nbsp;делось</h2>
+</section>
+
+<section class="slide light-text">
+	<img src="./images/running.gif" class="cover h">
+	<article class="place bottom">
+		<h2 style="width: 100%;">
+			Что&nbsp;влияет&nbsp;на&nbsp;скорость&nbsp;загрузки?
+			<br/>
+			И почему это должно волновать фронтендера?
+		</h2>
+	</article>
+</section>
+
+<section class="slide">
+	<h2>Пропускная способность канала (Bandwidth)</h2>
+	<p class="next">Имеет значение при передаче больших документов (аудио, видео). Для среднестатистического хождения по сайтам значительного влияния на скорость загрузки не оказывает – там сотни небольших запросов.</p>
+	<p class="next">Тем не менее, мы можем разгрузить канал передавая только необходимые данные в сжатом виде.</p>
+</section>
+
+<section class="slide">
+	<h2>Сетевые задержки (Latency и RTT)</h2>
+
+	<figure>
+		<blockquote>
+			<p>Чтобы ускорить интернет в целом, нам следует искать способы уменьшить RTT. Что если мы уменьшим трансатлантический RTT со 150 мс до 100 мс? Это даст больший эффект на скорости интернета, чем увеличение канала пользователя с 3,9 Мб/с до 10 Мб/с или даже 1 Гб/с.</p>
+		</blockquote>
+		<figcaption>Mike Belshe, More Bandwidth Doesn't Matter (Much)</figcaption>
+	</figure>
+</section>
+
+<section class="slide">
+	<h2>Сетевые задержки (Latency и RTT)</h2>
+	<img src="./images/Page%20load%20time%20vs.%20bandwidth%20and%20latency.svg" alt="">
+</section>
+
+<section class="slide">
+	<h2>Сетевые задержки (Latency и RTT)</h2>
+	<p>Сетевые задержки и round-trip time оказывают наибольшее влияние на скорость загрузки страниц.</p>
+	<p>Нужно оптимизировать в первую очередь их.</p>
+</section>
+
+<section class="slide">
+	<h2>В HTTP/1 с этим всё печально</h2>
+	<ul>
+		<li class="next">Одно соединение используется для загрузки одного ресурса. Его можно переиспользовать после завершения загрузки, но для того, чтобы грузить несколько ресурсов параллельно браузер устанавливает несколько соединений.</li>
+		<li class="next">Количество одновременных соединений к одному домену в браузерах обычно ограничено шестью.</li>
+		<li class="next">Значительную часть времени занимают раундтрипы, а не собственно загрузка данных.</li>
+		<li class="next">Позволяет сжимать тело запроса, но не заголовки, которые часто могут быть даже больше.</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Как эти проблемы решает HTTP/2</h2>
+	<ul>
+		<li class="next">Бинарный протокол</li>
+		<li class="next">Одно мультиплексное соединение</li>
+		<li class="next">Сжатие заголовков</li>
+		<li class="next">Приоритизация</li>
+		<li class="next">Server Push</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Server Push</h2>
+	<p class="next">В конфиге Apache заголовки можно установить вот так:</p>
+	<pre class="next"><code>
+&lt;Location /xxx.html&gt;
+    Header add Link "&lt;/xxx.css&gt;; <mark>rel=preload;</mark> as=style"
+    Header add Link "&lt;/xxx.js&gt;; <mark>rel=preload;</mark> as=script"
+&lt;/Location&gt;
+</code></pre>
+</section>
+
+<section class="slide">
+	<h2>Server Push</h2>
+	<p>На PHP вот так:</p>
+	<pre><code>
+header("Link: &lt;/xxx.css&gt;; rel=preload; as=style", false);
+header("Link: &lt;/xxx.js&gt;; rel=preload; as=script", false);
+</code></pre>
+</section>
+
+<section class="slide">
+	<h2>Server Push</h2>
+	<ul>
+		<li>Пользоваться с осторожностью и не пушить бездумно всё подряд.</li>
+		<li>Браузер использует только те ресурсы, которые бы сам иначе запросил на этой странице. Для других сценариев нужно использовать
+			<em>prefetch</em>.
+		</li>
+		<li>Нет смысла отправлять то, что уже лежит у браузера в кэше.</li>
+		<li>Но узнать, что там есть, сервер в данный момент не может, хотя разработки в этом направлении ведутся.</li>
+		<li>Очень детально о практике использовании этой технологии можно прочитать здесь:
+			<a href="https://docs.google.com/document/d/1K0NykTXBbbbTlv60t5MyJvXjqKGsCVNYHyLEXIxYMv0/preview">Rules of Thumb for HTTP/2 Push</a>
+		</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Лучшие практики фронтенда</h2>
+	<ul class="double">
+		<li>Конкатенация</li>
+		<li>Спрайты</li>
+		<li>Gzip</li>
+		<li>Сжатие изображений</li>
+		<li>Минификация скриптов и стилей</li>
+		<li>Версионирование ресурсов</li>
+		<li>Инлайнинг ресурсов</li>
+		<li>Above the fold / Critical path</li>
+		<li>Стили в head, скрипты в body</li>
+		<li>Ленивая загрузка</li>
+		<li>Шардинг доменов</li>
+		<li>Домены без кук</li>
+		<li>CDN</li>
+		<li>Кеширование, правильные заголовки</li>
+		<li>Уменьшение количества обращений к серверу DNS</li>
+	</ul>
+</section>
+
+<section class="slide light-text">
+	<img src="./images/concatenation.jpg" class="cover h">
+	<h2 class="place bottom">Конкатенация</h2>
+</section>
+
+<section class="slide">
+	<h2>Конкатенация</h2>
+	<p class="next">
+		В HTTP/1 каждый запрос сильно влияет на итоговую скорость загрузки страницы.
+		<br/>
+		В HTTP/2 запросы становятся дешёвыми.
+	</p>
+	<p class="next">Конкатенация создаёт проблему неэффективного кеширования.</p>
+	<p class="next">При отказе от конкатенации снижается эффективность сжатия - чем больше файл, тем эффективнее работает алгоритм.</p>
+	<p class="next">Лучшей стратегией может быть группирование нескольких модулей по смыслу в один файл.</p>
+</section>
+
+<section class="slide">
+	<h2>Спрайты</h2>
+</section>
+
+<section class="slide">
+	<h2>Gzip, сжатие изображений</h2>
+</section>
+
+<section class="slide">
+	<h2>Минификация скриптов и стилей</h2>
+</section>
+
+<section class="slide">
+	<h2>Версионирование ресурсов</h2>
+</section>
+
+<section class="slide">
+	<h2>Инлайнинг ресурсов</h2>
+</section>
+
+<section class="slide">
+	<h2>Above the fold / Critical path</h2>
+</section>
+
+<section class="slide">
+	<h2>Стили в head, скрипты в body</h2>
+</section>
+
+<section class="slide">
+	<h2>Ленивая загрузка</h2>
+</section>
+
+<section class="slide">
+	<h2>CDN</h2>
+</section>
+
+<section class="slide">
+	<h2>Кеширование, правильные заголовки</h2>
+</section>
+
+<section class="slide">
+	<h2>Шардинг доменов</h2>
+	<p>Несколько дополнительных доменов для статики, как способ обхода ограничения на количество одновременных подключений в браузере.</p>
+</section>
+
+<section class="slide">
+	<h2>Домены без кук</h2>
+</section>
+
+<section class="slide">
+	<h2>Уменьшение количества обращений к серверу DNS</h2>
+</section>
+
+<section class="slide">
+	<h2>Таблица-мифбастинг лучших практик (?)</h2>
+</section>
+
+<section class="slide">
+	<h2>Лучшие практики vs костыли для HTTP/1</h2>
+	<p>Применять практики бездумно нельзя, нужно понимать, <em>почему</em> делается именно так.</p>
+	<p>Не всё устареет с приходом HTTP/2.</p>
+	<p>Что-то нужно убирать или оставлять в зависимости от конкретных условий проекта.</p>
+</section>
+
+<section class="slide">
+	<h2>Так включать или не включать?</h2>
+	<p class="next">Если на вашем проекте нет оптимизаций, вы получите наибольший профит.</p>
+	<p class="next">Иногда оказывается медленнее, но редко и ненамного.</p>
+	<p class="next">Рекомендую <strong>включать</strong> – хуже не будет, но может стать сильно лучше.</p>
+</section>
+
+<section class="slide">
+	<h2>Протокол включать можно, а вот менять процесс разработки нужно с умом.</h2>
+	<p>Слепо отказываться от проверенных практик нельзя &mdash; какие-то вообще с протоколом не связаны, а отказ от других, хоть и выглядит логичным, не даёт ожидаемого результата.</p>
+</section>
+
+<section class="slide">
+	<h2>Идеально – две версии фронтенда</h2>
+	<p>Для каждой версии протокола использовать те оптимизации, которые на ней работают и не использовать те, от которых нет пользы.</p>
+</section>
+
+<section class="slide">
+	<h2>Лучшая «лучшая практика» &mdash; пользоваться головой</h2>
+	<p>Вникать всё равно придётся, потому что это – будущее, которое никуда уже не уйдёт.</p>
+</section>
+
+<section class="slide">
+	<h2>Интересные ссылки</h2>
+	<ul>
+		<li><a href="http://isthewebhttp2yet.com/">Исследование уровня проникновения HTTP/2</a></li>
+		<li><a href="https://eyeorg.net/index.html">Сравнение скорости одного ресурса на HTTP/1 и HTTP/2</a></li>
+		<li><a href="https://youtu.be/9oqj0Cr1z_A">Моделирование скорости HTTP/2 по данным статистики HTTP/1</a></li>
+	</ul>
+</section>
+
+<section class="slide">
+	<img src="./images/enjoy.gif">
+</section>
+
+<section class="slide">
+	<h2 class="shout">Вопросы?</h2>
 </section>
 
 <div class="progress"></div>
