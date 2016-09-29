@@ -38,6 +38,11 @@
 		.light-text a:visited {
 			color: #fff;
 		}
+
+		.slide ol.no-bullets li::before,
+		.slide ul.no-bullets li::before {
+			content: '' !important;
+		}
 	</style>
 </head>
 <body class="shower full">
@@ -224,10 +229,10 @@ header("Link: &lt;/xxx.js&gt;; rel=preload; as=script", false);
 		<li>Above the fold / Critical path</li>
 		<li>Стили в head, скрипты в body</li>
 		<li>Ленивая загрузка</li>
-		<li>Шардинг доменов</li>
-		<li>Домены без кук</li>
 		<li>CDN</li>
 		<li>Кеширование, правильные заголовки</li>
+		<li>Шардинг доменов</li>
+		<li>Домены без кук</li>
 		<li>Уменьшение количества обращений к серверу DNS</li>
 	</ul>
 </section>
@@ -303,7 +308,24 @@ header("Link: &lt;/xxx.js&gt;; rel=preload; as=script", false);
 </section>
 
 <section class="slide">
-	<h2>Таблица-мифбастинг лучших практик (?)</h2>
+	<h2>Лучшие практики в свете HTTP/2</h2>
+	<ul class="double no-bullets">
+		<li><span style="color: orange;">&quest;</span>&nbsp;Конкатенация</li>
+		<li><span style="color: orange;">&quest;</span>&nbsp;Спрайты</li>
+		<li><span style="color: green;">&check;</span>&nbsp;Gzip</li>
+		<li><span style="color: green;">&check;</span>&nbsp;Сжатие изображений</li>
+		<li><span style="color: orange;">&quest;</span>&nbsp;Минификация скриптов и стилей</li>
+		<li><span style="color: green;">&check;</span>&nbsp;Версионирование ресурсов</li>
+		<li><span style="color: red;">&times;</span>&nbsp;Инлайнинг ресурсов</li>
+		<li><span style="color: green;">&check;</span>&nbsp;Above the fold / Critical path</li>
+		<li><span style="color: green;">&check;</span>&nbsp;Стили в head, скрипты в body</li>
+		<li><span style="color: green;">&check;</span>&nbsp;Ленивая загрузка</li>
+		<li><span style="color: green;">&check;</span>&nbsp;CDN</li>
+		<li><span style="color: green;">&check;</span>&nbsp;Кеширование, правильные заголовки</li>
+		<li><span style="color: red;">&times;</span>&nbsp;Шардинг доменов</li>
+		<li><span style="color: red;">&times;</span>&nbsp;Домены без кук</li>
+		<li><span style="color: green;">&check;</span>&nbsp;Уменьшение количества обращений к серверу DNS</li>
+	</ul>
 </section>
 
 <section class="slide">
@@ -333,6 +355,7 @@ header("Link: &lt;/xxx.js&gt;; rel=preload; as=script", false);
 <section class="slide">
 	<h2>Лучшая «лучшая практика» &mdash; пользоваться головой</h2>
 	<p>Вникать всё равно придётся, потому что это – будущее, которое никуда уже не уйдёт.</p>
+	<p class="next">А если уж совсем по-честному, то вникать надо было и раньше :)</p>
 </section>
 
 <section class="slide">
@@ -345,11 +368,16 @@ header("Link: &lt;/xxx.js&gt;; rel=preload; as=script", false);
 </section>
 
 <section class="slide">
-	<img src="./images/enjoy.gif">
+	<img src="./images/enjoy.gif" class="cover h">
 </section>
 
 <section class="slide">
-	<h2 class="shout">Вопросы?</h2>
+	<h2>Вопросы?</h2>
+	<p>
+		Алексей Уколов, <a href="https://twitter.com/alexey_m_ukolov" target="_blank">@alexey_m_ukolov</a>
+		<br/>
+		<a href="mailto:alexey-m-ukolov@gmail.com">alexey-m-ukolov@gmail.com</a>
+	</p>
 </section>
 
 <div class="progress"></div>
