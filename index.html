@@ -298,20 +298,48 @@
 <section class="slide">
 	<h2>Лучшие практики в свете HTTP/2</h2>
 	<ul class="double no-bullets" style="font-size: 26px;">
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: #ffdc00;">&nbsp;&nbsp;&quest;&nbsp;Конкатенация</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: #ffdc00;">&nbsp;&nbsp;&quest;&nbsp;Спрайты</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Gzip, сжатие изображений</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Минификация</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Версионирование</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: rgba(230, 38, 44, 0.7);">&nbsp;<span>✕</span>&nbsp;Инлайнинг ресурсов</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Рендер "первого экрана"</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Скрипты в конце body</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Ленивая загрузка</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;CDN</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Заголовки кеширования</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: rgba(230, 38, 44, 0.7);">&nbsp;<span>✕</span>&nbsp;Шардинг доменов</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: rgba(230, 38, 44, 0.7);">&nbsp;<span>✕</span>&nbsp;Домены без кук</span></li>
-		<li><span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Минимум запросов к DNS</span></li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: #ffdc00;">&nbsp;&nbsp;&quest;&nbsp;Конкатенация</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: #ffdc00;">&nbsp;&nbsp;&quest;&nbsp;Спрайты</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Gzip, сжатие изображений</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Минификация</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Версионирование</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: rgba(230, 38, 44, 0.7);">&nbsp;<span>✕</span>&nbsp;Инлайнинг ресурсов</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Рендер "первого экрана"</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Скрипты в конце body</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Ленивая загрузка</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;CDN</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Заголовки кеширования</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: rgba(230, 38, 44, 0.7);">&nbsp;<span>✕</span>&nbsp;Шардинг доменов</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: rgba(230, 38, 44, 0.7);">&nbsp;<span>✕</span>&nbsp;Домены без кук</span>
+		</li>
+		<li>
+			<span style="padding: .1em .2em; border-radius: .2em; background: rgba(28, 176, 5, 0.7);">&nbsp;<span>&check;</span>&nbsp;Минимум запросов к DNS</span>
+		</li>
 	</ul>
 </section>
 
@@ -323,10 +351,14 @@
 </section>
 
 <section class="slide">
+	<h2 class="shout">Так включать или не включать?</h2>
+</section>
+
+<section class="slide">
 	<h2>Так включать или не включать?</h2>
-	<p class="next">Если на вашем проекте нет оптимизаций, вы получите наибольший профит.</p>
-	<p class="next">Иногда оказывается медленнее, но редко и ненамного.</p>
-	<p class="next">Рекомендую <strong>включать</strong> – хуже не будет, но может стать сильно лучше.</p>
+	<p>Если на вашем проекте нет оптимизаций, вы получите наибольший профит.</p>
+	<p>Иногда оказывается медленнее, но редко и ненамного.</p>
+	<p>Рекомендую <strong>включать</strong> – хуже не будет, но может стать сильно лучше.</p>
 </section>
 
 <section class="slide">
@@ -358,7 +390,9 @@
 		<li><a href="https://eyeorg.net/index.html">Сравнение скорости одного ресурса на HTTP/1 и HTTP/2</a></li>
 		<li><a href="https://youtu.be/9oqj0Cr1z_A">Моделирование скорости HTTP/2 по данным статистики HTTP/1</a></li>
 		<li><a href="https://www.youtube.com/watch?v=e6DUrH56g14">Mythbusting HTTPS</a></li>
-		<li><a href="https://docs.google.com/document/d/1K0NykTXBbbbTlv60t5MyJvXjqKGsCVNYHyLEXIxYMv0/preview">Rules of Thumb for HTTP/2 Push</a>		</li>
+		<li>
+			<a href="https://docs.google.com/document/d/1K0NykTXBbbbTlv60t5MyJvXjqKGsCVNYHyLEXIxYMv0/preview">Rules of Thumb for HTTP/2 Push</a>
+		</li>
 	</ul>
 </section>
 
