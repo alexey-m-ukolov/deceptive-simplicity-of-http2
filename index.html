@@ -17,11 +17,16 @@
 			line-height: 1.6;
 		}
 
-		li {
+		.slide img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+
+		.slide li {
 			margin-bottom: 1em;
 		}
 
-		li:last-child {
+		.slide li:last-child {
 			margin-bottom: 0;
 		}
 
@@ -34,10 +39,10 @@
 			background-size: cover;
 		}
 
-		.light-text,
-		.light-text h2,
-		.light-text a,
-		.light-text a:visited {
+		.slide.light-text,
+		.slide.light-text h2,
+		.slide.light-text a,
+		.slide.light-text a:visited {
 			color: #fff;
 		}
 
@@ -67,9 +72,19 @@
 	<h2 class="shout">Доклад-покаяние</h2>
 </section>
 
-<section class="slide">
-	<h2>История и смысл HTTP/2</h2>
-	<p><span style="color: red;">TODO</span></p>
+<section class="slide black light-text">
+	<img src="pictures/sitnik.jpg" class="cover h">
+</section>
+
+<section class="slide black light-text">
+	<img src="pictures/life-of-http.png" class="cover w">
+	<article>
+		<p>HTTP/0.9 — 1991 г.</p>
+		<p>HTTP/1.0 — 1996 г.</p>
+		<p>HTTP/1.1 — 1999 г.</p>
+		<p>SPDY — 2009 г.</p>
+		<p>HTTP/2 — 2015 г.</p>
+	</article>
 </section>
 
 <section class="slide black light-text">
@@ -96,6 +111,10 @@
 	</blockquote>
 	<br/>
 	<p class="next">Но отказ от этих оптимизаций ударит по тем, кто не поддерживает новый протокол.</p>
+	<article class="next">
+		<p>Но их же у нас всего 9%&hellip;</p>
+		<img src="pictures/trollface.jpg" width="250" class="place bottom right">
+	</article>
 </section>
 
 <section class="slide black light-text">
@@ -152,31 +171,37 @@
 <section class="slide">
 	<h2>Сетевые задержки (Latency и RTT)</h2>
 	<p>Оказывают наибольшее влияние на скорость загрузки страниц, поэтому нужно оптимизировать в первую очередь их.</p>
+	<p>Но скорость света увеличить не получится&hellip;</p>
 	<p>Установка соединения &mdash; очень дорогая операция.</p>
 </section>
 
 <section class="slide">
-	<h2>Анатомия запроса</h2>
-	<p><span style="color: red;">TODO</span></p>
+	<h2>Анатомия TCP-соединения</h2>
+	<ul style="width: 45%;">
+		<li>Тройное рукопожатие</li>
+		<li>Медленный старт</li>
+		<li>А ещё TLS, DNS и много других страшных слов</li>
+	</ul>
+	<img src="pictures/Tcp-handshake.svg.png" class="place bottom right" style="width: 50%; margin-right: 20px; margin-bottom: 40px;"/>
 </section>
 
 <section class="slide">
 	<h2>В HTTP/1 с этим всё печально</h2>
 	<ul>
-		<li class="next">Одно соединение &mdash; один ресурс.</li>
-		<li class="next">Один домен &mdash; шесть соединений в браузере.</li>
-		<li class="next">Заголовки не сжимаются, хотя часто могут быть больше тела запроса.</li>
+		<li>Одно соединение &mdash; один ресурс.</li>
+		<li>Один домен &mdash; шесть соединений в браузере.</li>
+		<li>Заголовки не сжимаются, хотя часто могут быть больше тела запроса.</li>
 	</ul>
 </section>
 
 <section class="slide">
 	<h2>HTTP/2 решает эти проблемы</h2>
 	<ul>
-		<li class="next">Бинарный протокол</li>
-		<li class="next">Одно мультиплексное соединение</li>
-		<li class="next">Приоритизация</li>
-		<li class="next">Сжатие заголовков</li>
-		<li class="next">Server Push</li>
+		<li>Бинарный протокол</li>
+		<li>Одно мультиплексное соединение</li>
+		<li>Приоритизация</li>
+		<li>Сжатие заголовков</li>
+		<li>Server Push</li>
 	</ul>
 </section>
 
@@ -233,68 +258,101 @@
 
 <section class="slide">
 	<h2>Спрайты</h2>
-	<p style="color: red;">TODO: Пример</p>
+	<img src="pictures/sprite.png">
 </section>
 
 <section class="slide">
+	<h2>Спрайты</h2>
+	<img src="pictures/sprite_hover.png" class="cover">
+</section>
+
+<section class="slide black">
 	<h2>Gzip, сжатие изображений</h2>
-	<p style="color: red;">TODO: Пример</p>
+	<img src="pictures/repression.jpg" class="cover">
+</section>
+
+<section class="slide black light-text">
+	<h2>Минификация</h2>
+	<img src="pictures/stomp.jpg" class="cover h">
 </section>
 
 <section class="slide">
-	<h2>Минификация скриптов и стилей</h2>
-	<p style="color: red;">TODO: Пример</p>
-</section>
-
-<section class="slide">
-	<h2>Версионирование ресурсов</h2>
-	<p style="color: red;">TODO: Пример</p>
+	<h2>Версионирование</h2>
+	<pre><code>&lt;link href="/styles/main.<mark>v42</mark>.css"/&gt;</code></pre>
+	<pre><code>&lt;link href="/styles/main.css<mark>?v=42</mark>"/&gt;</code></pre>
+	<pre><code>&lt;link href="/styles/main.<mark>b149bad6</mark>.css"/&gt;</code></pre>
 </section>
 
 <section class="slide">
 	<h2>Инлайнинг ресурсов</h2>
-	<p style="color: red;">TODO: Пример</p>
+	<pre style="font-size: 25px;"><code>.block {
+	background-image:  url(
+		data:image/gif;
+		<mark>base64</mark>,
+		PHN2ZVJlYWR5AP5JRE ... JRa2jEIzFoJHJoGa9Zn==
+	);
+}</code></pre>
 </section>
 
 <section class="slide">
 	<h2>Рендер "первого экрана"</h2>
-	<p style="color: red;">TODO: Пример</p>
+	<img src="pictures/above-and-below-the-fold.jpg" height="400">
 </section>
 
 <section class="slide">
 	<h2>Скрипты в конце body</h2>
-	<p style="color: red;">TODO: Пример</p>
+	<pre style="font-size: 24px;"><code>&lt;html&gt;
+	&lt;head&gt;
+		&lt;link rel="stylesheet" href="/styles/main.css"/&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&hellip;
+		<mark>&lt;script src="/scripts/vendor/jquery.js"/&gt;</mark>
+		<mark>&lt;script src="/scripts/app.js"/&gt;</mark>
+	&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 </section>
 
 <section class="slide">
 	<h2>Ленивая загрузка</h2>
-	<p style="color: red;">TODO: Пример</p>
+	<pre><code>&lt;img src="loading.gif" <mark>data-src="real.jpg"</mark> /&gt;<br/>&hellip;<br/>&lt;script&gt;
+$('img').each(function () {
+	$(this).attr('src', $(this).data('src'));
+});
+&lt;/script&gt;</code></pre>
 </section>
 
 <section class="slide">
 	<h2>CDN</h2>
-	<p style="color: red;">TODO: Пример</p>
+	<img src="pictures/cdn.png"/>
 </section>
 
 <section class="slide">
 	<h2>Заголовки кеширования</h2>
-	<p style="color: red;">TODO: Пример</p>
+	<blockquote>
+		<code>no-cache</code> doesn't mean "don't cache", it means it must check (or "revalidate" as it calls it) with the server before using the cached resource.
+		<code>no-store</code> tells the browser not to cache it at all. Also
+		<code>must-revalidate</code> doesn't mean "must revalidate", it means the local resource can be used if it's younger than the provided
+		<code>max-age</code>, otherwise it must revalidate.
+	</blockquote>
+	<p>
+		<a href="https://jakearchibald.com/2016/caching-best-practices/" target="_blank">Caching best practices & max-age gotchas</a>
+	</p>
 </section>
 
 <section class="slide">
 	<h2>Шардинг доменов</h2>
-	<p>Несколько дополнительных доменов для статики, как способ обхода ограничения на количество одновременных подключений в браузере.</p>
-	<p style="color: red;">TODO: Пример</p>
+	<img src="pictures/domain-sharding.png"/>
 </section>
 
 <section class="slide">
 	<h2>Домены без кук</h2>
-	<p style="color: red;">TODO: Пример</p>
+	<img src="pictures/make-tea-not-love.jpg"/>
 </section>
 
 <section class="slide">
 	<h2>Минимум запросов к DNS</h2>
-	<p style="color: red;">TODO: Пример</p>
+	<img src="pictures/dns-resolve.png"/>
 </section>
 
 <section class="slide">
@@ -358,13 +416,13 @@
 
 <section class="slide">
 	<h2>Так включать или не включать?</h2>
-	<p>Если на вашем проекте нет оптимизаций, вы получите наибольший профит.</p>
+	<p>Если на проекте нет оптимизаций &mdash; получите наибольший профит.</p>
 	<p>Иногда оказывается медленнее, но редко и ненамного.</p>
 	<p>Рекомендую <strong>включать</strong> – хуже не будет, но может стать сильно лучше.</p>
 </section>
 
 <section class="slide black light-text">
-	<h2 class="shout">Включать можно, менять процесс &mdash; с умом</h2>
+	<h2 class="shout">Включать можно. Менять процесс &mdash; с умом</h2>
 </section>
 
 <section class="slide black light-text">
