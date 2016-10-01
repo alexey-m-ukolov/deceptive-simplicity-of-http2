@@ -78,29 +78,28 @@
 
 <section class="slide black light-text">
 	<img src="pictures/life-of-http.png" class="cover w">
-	<article>
+	<article style="display: inline-block; background-color: rgba(255, 255, 255, 0.1); padding: 10px; margin: -10px; border-radius: 10px;">
 		<p>HTTP/0.9 — 1991 г.</p>
 		<p>HTTP/1.0 — 1996 г.</p>
-		<p>HTTP/1.1 — 1999 г.</p>
-		<p>SPDY — 2009 г.</p>
-		<p>HTTP/2 — 2015 г.</p>
+		<p style="margin-bottom: 0;">HTTP/1.1 — 1999 г.</p>
 	</article>
+	<p style="margin-top: 1em;">SPDY — 2009 г.</p>
+	<p>HTTP/2 — 2015 г.</p>
 </section>
 
-<section class="slide black light-text">
-	<img src="pictures/unicorn.jpg" class="cover h">
-	<h2 class="place bottom">HTTP/2&nbsp;глазами&nbsp;маркетологов</h2>
+<section class="slide">
+	<h2>HTTP/2&nbsp;глазами&nbsp;маркетологов</h2>
+	<img src="pictures/unicorn.jpg"/>
 </section>
 
 <section class="slide black">
-	<img src="pictures/can-i-use.png" class="cover">
-
+	<img src="pictures/can-i-use.png" class="cover h">
 	<p class="place right bottom" style="margin-right: 50px;font-size: 50px;line-height: 1;margin-bottom: 70px;">А на нашем проекте ≈91%</p>
 </section>
 
-<section class="slide black light-text">
-	<img src="pictures/unicorn.jpg" class="cover h">
-	<h2 class="place bottom">Ура!</h2>
+<section class="slide">
+	<h2>Ура!</h2>
+	<img src="pictures/unicorn.jpg"/>
 </section>
 
 <section class="slide">
@@ -123,23 +122,26 @@
 </section>
 
 <section class="slide black light-text">
-	<h2 class="shout">HTTP/2 исправил ошибки прошлого</h2>
-</section>
-
-<section class="slide black light-text">
 	<img src="pictures/fight.png" class="cover h">
-	<h2 class="place bottom">Но&nbsp;само&nbsp;"прошлое"&nbsp;никуда&nbsp;не&nbsp;делось</h2>
+	<h2 class="place bottom">
+		HTTP/2&nbsp;исправил&nbsp;ошибки&nbsp;прошлого.
+		<br/>
+		Но&nbsp;само&nbsp;"прошлое"&nbsp;никуда&nbsp;не&nbsp;делось&hellip;
+	</h2>
 </section>
 
 <section class="slide black light-text">
-	<img src="pictures/running.gif" class="cover h">
-	<article class="place bottom">
-		<h2 style="width: 100%;">
-			Что&nbsp;влияет&nbsp;на&nbsp;скорость&nbsp;загрузки?
-			<br/>
-			И почему это должно волновать фронтендера?
-		</h2>
-	</article>
+	<h2>
+		Почему скорость загрузки важна?
+		<br/>
+		<br/>
+		И почему это должно волновать фронтендера?
+	</h2>
+	<img src="pictures/running.gif" class="cover w">
+</section>
+
+<section class="slide black light-text">
+	<h2 class="shout" style="font-size: 100px;">Что влияет&nbsp;на скорость&nbsp;загрузки?</h2>
 </section>
 
 <section class="slide">
@@ -182,16 +184,23 @@
 		<li>Медленный старт</li>
 		<li>А ещё TLS, DNS и много других страшных слов</li>
 	</ul>
+	<p style="width: 45%;"><a href="https://hpbn.co/">High Performance<br/>Browser Networking</a></p>
 	<img src="pictures/Tcp-handshake.svg.png" class="place bottom right" style="width: 50%; margin-right: 20px; margin-bottom: 40px;"/>
 </section>
 
 <section class="slide">
 	<h2>В HTTP/1 с этим всё печально</h2>
 	<ul>
-		<li>Одно соединение &mdash; один ресурс.</li>
-		<li>Один домен &mdash; шесть соединений в браузере.</li>
-		<li>Заголовки не сжимаются, хотя часто могут быть больше тела запроса.</li>
+		<li>Одно соединение &mdash; один ресурс</li>
+		<li>Шесть* соединений в браузере на один домен</li>
+		<li>Заголовки не сжимаются, хотя часто могут быть больше тела запроса</li>
 	</ul>
+	<p class="note">*
+		<a href="http://www.browserscope.org/?category=network">http://www.browserscope.org/?category=network</a></p>
+</section>
+
+<section class="slide black light-text">
+	<h2 class="shout">HTTP/2 решает эти проблемы</h2>
 </section>
 
 <section class="slide">
@@ -226,10 +235,17 @@
 		<li>Нет смысла отправлять то, что уже лежит в кэше.</li>
 		<li>Но узнать, что там есть, сервер пока не может&hellip;</li>
 	</ul>
+	<p>
+		<a href="https://docs.google.com/document/d/1K0NykTXBbbbTlv60t5MyJvXjqKGsCVNYHyLEXIxYMv0/preview">Rules of Thumb for HTTP/2 Push</a>
+	</p>
 </section>
 
 <section class="slide black light-text">
-	<h2 class="shout">Лучшие практики фронтенда</h2>
+	<h2 class="shout">
+		Лучшие практики фронтенда
+		<br/>
+		<small style="font-size: 75px;">(не все)</small>
+	</h2>
 </section>
 
 <section class="slide">
@@ -251,29 +267,36 @@
 	</ul>
 </section>
 
-<section class="slide black light-text">
-	<img src="pictures/concatenation.jpg" class="cover h">
+<section class="slide">
 	<h2>Конкатенация</h2>
+	<img src="pictures/concatenation.jpg" class="">
+	<p style="font-size: 25px;">
+		<a href="http://engineering.khanacademy.org/posts/js-packaging-http2.htm">http://engineering.khanacademy.org/posts/js-packaging-http2.htm</a>
+	</p>
 </section>
 
 <section class="slide">
 	<h2>Спрайты</h2>
 	<img src="pictures/sprite.png">
+	<p style="font-size: 25px;">
+		<a href="http://blog.octo.com/en/http2-arrives-but-sprite-sets-aint-no-dead/">http://blog.octo.com/en/http2-arrives-but-sprite-sets-aint-no-dead/</a>
+	</p>
 </section>
 
 <section class="slide">
 	<h2>Спрайты</h2>
-	<img src="pictures/sprite_hover.png" class="cover">
+	<img src="pictures/sprite_hover.png">
+	<p class="note">Кто-так ещё делает?</p>
 </section>
 
-<section class="slide black">
+<section class="slide">
 	<h2>Gzip, сжатие изображений</h2>
-	<img src="pictures/repression.jpg" class="cover">
+	<img src="pictures/repression.jpg">
 </section>
 
-<section class="slide black light-text">
+<section class="slide">
 	<h2>Минификация</h2>
-	<img src="pictures/stomp.jpg" class="cover h">
+	<img src="pictures/stomp.jpg">
 </section>
 
 <section class="slide">
@@ -301,7 +324,7 @@
 
 <section class="slide">
 	<h2>Скрипты в конце body</h2>
-	<pre style="font-size: 24px;"><code>&lt;html&gt;
+	<pre style="font-size: 21px;"><code>&lt;html&gt;
 	&lt;head&gt;
 		&lt;link rel="stylesheet" href="/styles/main.css"/&gt;
 	&lt;/head&gt;
@@ -311,6 +334,9 @@
 		<mark>&lt;script src="/scripts/app.js"/&gt;</mark>
 	&lt;/body&gt;
 &lt;/html&gt;</code></pre>
+	<p style="font-size: 25px;">
+		<a href="http://www.html5rocks.com/ru/tutorials/internals/howbrowserswork/">Принципы работы современных веб-браузеров</a>
+	</p>
 </section>
 
 <section class="slide">
@@ -323,7 +349,7 @@ $('img').each(function () {
 </section>
 
 <section class="slide">
-	<h2>CDN</h2>
+	<h2>Content Delivery Network</h2>
 	<img src="pictures/cdn.png"/>
 </section>
 
@@ -422,7 +448,7 @@ $('img').each(function () {
 </section>
 
 <section class="slide black light-text">
-	<h2 class="shout">Включать можно. Менять процесс &mdash; с умом</h2>
+	<h2 class="shout" style="font-size: 100px;">Включать можно<br/>Менять процесс &mdash; с умом</h2>
 </section>
 
 <section class="slide black light-text">
@@ -450,9 +476,6 @@ $('img').each(function () {
 		<li><a href="https://eyeorg.net/index.html">Сравнение скорости одного ресурса на HTTP/1 и HTTP/2</a></li>
 		<li><a href="https://youtu.be/9oqj0Cr1z_A">Моделирование скорости HTTP/2 по данным статистики HTTP/1</a></li>
 		<li><a href="https://www.youtube.com/watch?v=e6DUrH56g14">Mythbusting HTTPS</a></li>
-		<li>
-			<a href="https://docs.google.com/document/d/1K0NykTXBbbbTlv60t5MyJvXjqKGsCVNYHyLEXIxYMv0/preview">Rules of Thumb for HTTP/2 Push</a>
-		</li>
 	</ul>
 </section>
 
